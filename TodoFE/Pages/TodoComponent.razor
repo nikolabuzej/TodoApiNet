@@ -1,0 +1,18 @@
+﻿@using FECore.Domain
+
+
+<tr>
+    <td>@Todo.Text</td>
+    <td>@Todo.CreatedAt</td>
+    <td><button onclick=>@(Todo.IsDone ? "Yes" : "No")</button></td>
+    <td>@Todo.FinishedAt</td>
+</tr>
+
+
+@code {
+
+    [Parameter]
+    public Todo? Todo { get; set; }
+
+
+}

@@ -10,6 +10,10 @@ using Infrastructure.Repositores.Mongo;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(s =>
+{
+    s.AddPolicy("cors", builder => builder.AllowAnyOrigin());
+});
 // Add services to the container.
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("TodoMongoDatabase"));
 builder.Services.AddTransient<ITodoRepository, TodoRepositoryMongo>();
@@ -34,7 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("cors");
 app.UseAuthorization();
 
 app.MapControllers();

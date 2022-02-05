@@ -1,0 +1,43 @@
+﻿@page "/todo"
+@inject ITodoService todoService
+<PageTitle>Todos</PageTitle>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Created at</th>
+                <th>Completed</th>
+                <th>Completed at</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var todo in todos)
+            {
+                <TodoComponent Todo="todo" />
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+
+
+    private List<Todo> todos = new List<Todo>();
+    // private bool shouldRender = false;
+
+    //  protected override bool ShouldRender() => shouldRender;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        var response = await todoService.GetTodos();
+
+        todos = response.ToList();
+
+        //  shouldRender = true;
+
+    }
+}
