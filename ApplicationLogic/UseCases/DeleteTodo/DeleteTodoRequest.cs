@@ -1,10 +1,10 @@
 ﻿using ApplicationLogic.Base.Abstractions;
 
-namespace ApplicationLogic.UseCases.GetTodo
+namespace ApplicationLogic.UseCases.DeleteTodo
 {
-    public class GetTodoRequest : IRequest
+    public class DeleteTodoRequest : IRequest
     {
-        public GetTodoRequest(Guid id)
+        public DeleteTodoRequest(Guid id)
         {
             Id = id;
         }
